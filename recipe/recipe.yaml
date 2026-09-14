@@ -30,9 +30,8 @@ source:
         - patches/0008-add-SPM_DLL-machinery.patch
         - patches/0009-use-custom-protoc-plugin-to-insert-SPM_DLL-macro.patch
     - patches/0010-avoid-spuriously-inclusing-vendored-abseil.patch
-    - patches/0011-fix-minloglevel-situation-avoid-_USE_EXTERNAL_ABSL.patch
-    - patches/0012-adapt-to-names-for-import_library.patch
-    - patches/0013-also-install-SPM_MODEL_PROTO_HDRS.patch
+    - patches/0011-adapt-to-names-for-import_library.patch
+    - patches/0012-also-install-SPM_MODEL_PROTO_HDRS.patch
 
 build:
   number: 0
@@ -175,6 +174,7 @@ outputs:
         - pip
         - python
         - setuptools
+        - pybind11
         - ${{ pin_subpackage('libsentencepiece', exact=True) }}
         - libprotobuf
       run:
