@@ -189,14 +189,22 @@ outputs:
           run:
             - pytest
             - numpy
-            - protobuf
+            # no protobuf on freethreading
+            - if: python != "3.14.* *_cp314t"
+              then: protobuf
         files:
           source:
             - python/test
             - python/tools
             - data
         script:
-          - cd python && pytest test
+          - cd python
+          - if: python != "3.14.* *_cp314t"
+            then: pytest test
+            else: |
+              pytest test \
+                --deselect test/sentencepiece_test.py::TestSentencepieceProcessor::test_decode_offset_mapping \
+                --deselect test/sentencepiece_test.py::TestSentencepieceProcessor::test_offset_mapping
 
   - package:
       # metapackage that holds everything together
