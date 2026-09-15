@@ -188,8 +188,8 @@ outputs:
       - requirements:
           run:
             - pytest
-            - pytest-forked
             - numpy
+            - pytest-xdist
             # no protobuf on freethreading
             - if: python != "3.14.* *_cp314t"
               then: protobuf
@@ -201,7 +201,7 @@ outputs:
         script:
           - cd python
           - if: python != "3.14.* *_cp314t"
-            then: pytest test --forked
+            then: pytest -nauto test
             else: |
               pytest test \
                 --deselect test/sentencepiece_test.py::TestSentencepieceProcessor::test_decode_offset_mapping \
