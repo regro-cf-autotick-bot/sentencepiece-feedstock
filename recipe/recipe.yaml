@@ -188,9 +188,12 @@ outputs:
       - requirements:
           run:
             - pytest
+            - numpy
+            - protobuf
         files:
           source:
             - python/test
+            - python/tools
             - data
         script:
           - cd python && pytest test
